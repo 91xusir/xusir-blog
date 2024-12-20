@@ -6,12 +6,12 @@ slug: "mysql-command"
 isPublish: true
 ---
 
-# 1. 创建数据库
+### 1. 创建数据库
 ```sql
 CREATE DATABASE IF NOT EXISTS mydatabase;
 ```
 
-# 2. 删除数据库
+### 2. 删除数据库
 ```sql
 DROP DATABASE IF EXISTS mydatabase;
 ```
