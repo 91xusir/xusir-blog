@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import formatDate from "@/utils/formatDate";
+
+export async function getStaticPaths() {
+  try {
+    const posts = await getCollection("posts");
+    return posts.map((post) => ({
+      params: { slug: post.slug },
+      props: { post },
+    }));
+  } catch (error) {
+    console.error('获取文章集合时出错:', error);
+    return [];
+  }
+}
+
+type Props = {
+  post: CollectionEntry<"posts">;
+};
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <main class="post mx-auto flex w-full max-w-prose flex-col gap-4">
+    <header role="presentation">
+      <article itemscope itemtype="http://schema.org/BlogPosting">
+        <h1 class="text-md" itemprop="headline">
+          {post.data.title} - {formatDate(post.data.publishedAt)}
+        </h1>
+        <p class="italic" itemprop="description">{post.data.description}</p>
+        <meta itemprop="datePublished" content={post.data.publishedAt.toISOString()} />
+      </article>
+    </header>
+    <Content />
+  </main>
+</Layout>

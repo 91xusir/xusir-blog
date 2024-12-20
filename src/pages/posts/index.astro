@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import formatDate from "@/utils/formatDate";
+
+const posts = await getCollection("posts");
+posts.sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<Layout title="文章列表">
+  <main class="flex flex-col gap-20">
+    <div class="flex items-center justify-between">
+      <h1 class="text-2xl text-neutral-100">Posts List</h1>
+      
+      <!-- 搜索框容器 -->
+      <div class="relative w-64">
+        <input
+          type="text"
+          id="search"
+          placeholder="Search..."
+          class="w-full rounded-lg bg-neutral-800 px-4 py-2 text-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-700"
+        />
+      </div>
+    </div>
+
+    <ul class="flex flex-col gap-8" id="posts-list">
+      {
+        posts.map((post) => (
+          <li class="flex flex-col gap-2 post-item">
+            <a
+              href={`/posts/${post.slug}`}
+              class="text-lg text-neutral-100 hover:text-neutral-400 post-title"
+            >
+              {post.data.title}
+            </a>
+            <p class="text-neutral-400">{formatDate(post.data.publishedAt)}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Layout>
+
+<script>
+  // 客户端搜索逻辑
+  const searchInput = document.getElementById('search') as HTMLInputElement;
+  const postsList = document.getElementById('posts-list');
+  const postItems = document.querySelectorAll('.post-item');
+
+  searchInput.addEventListener('input', (e) => {
+    const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
+
+    postItems.forEach((item) => {
+      const title = item.querySelector('.post-title')?.textContent?.toLowerCase() || '';
+      if (title.includes(searchTerm)) {
+        (item as HTMLElement).style.display = 'flex';
+      } else {
+        (item as HTMLElement).style.display = 'none';
+      }
+    });
+  });
+</script>
+
+<style>
+  /* 可选：添加搜索框动画效果 */
+  #search {
+    transition: all 0.3s ease;
+  }
+  
+  #search:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+</style>

@@ -1,0 +1,45 @@
+---
+import Header from "../components/Header.astro";
+import BlurCircle from "@/components/shared/BlurCircle.astro";
+import theme from "@/data/theme";
+import SEOTags from "@/components/seo/SEOTags.astro";
+import type { HeadTags } from "@/utils/types/HeadTags";
+import { Image } from 'astro:assets';
+import bgImage from '/public/bg.jpeg';
+
+import "@/styles/tailwind.css";
+import "@/styles/post.css";
+
+export type Props = HeadTags;
+
+const headTags = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <SEOTags {...headTags} />
+  <body class="bg-neutral-950">
+    <div class="fixed inset-0 -z-10">
+      <Image
+        src={bgImage}
+        alt="Background"
+        width={1920}
+        height={1080}
+        loading="eager"
+        class="h-full w-full object-cover"
+      />
+      <div class="absolute inset-0 bg-neutral-950/80"></div>
+    </div>
+    <div
+      class="relative mx-auto flex min-h-screen max-w-[872px] flex-col gap-9 px-10 py-8 text-sm text-neutral-400 md:gap-20 md:py-16"
+    >
+      <Header />
+      <BlurCircle position="top" color={theme.colors.blur.top} />
+      <BlurCircle position="bottom" color={theme.colors.blur.bottom} />
+      <slot />
+    </div>
+    <a href="#main-content" class="sr-only focus:not-sr-only">
+      跳转到主要内容
+    </a>
+  </body>
+</html>
