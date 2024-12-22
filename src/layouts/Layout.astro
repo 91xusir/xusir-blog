@@ -4,30 +4,18 @@ import BlurCircle from "@/components/shared/BlurCircle.astro";
 import theme from "@/data/theme";
 import SEOTags from "@/components/seo/SEOTags.astro";
 import type { HeadTags } from "@/utils/types/HeadTags";
-import { Image } from 'astro:assets';
-import bgImage from '/public/bg.jpeg';
-
 import "@/styles/tailwind.css";
 import "@/styles/post.css";
-
 export type Props = HeadTags;
 
 const headTags = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
   <SEOTags {...headTags} />
-  <body class="bg-neutral-950">
-    <div class="fixed inset-0 -z-10">
-      <Image
-        src={bgImage}
-        alt="Background"
-        width={1920}
-        height={1080}
-        loading="eager"
-        class="h-full w-full object-cover"
-      />
+  <body class="bg-neutral-950 overflow-y-scroll">
+    <div class="fixed inset-0 -z-10 bg-cover bg-center" style="background-image: url('/bg.jpeg');">
       <div class="absolute inset-0 bg-neutral-950/80"></div>
     </div>
     <div
@@ -38,8 +26,6 @@ const headTags = Astro.props;
       <BlurCircle position="bottom" color={theme.colors.blur.bottom} />
       <slot />
     </div>
-    <a href="#main-content" class="sr-only focus:not-sr-only">
-      跳转到主要内容
-    </a>
+    <a href="#main-content" class="sr-only focus:not-sr-only"> 跳转到主要内容 </a>
   </body>
 </html>
