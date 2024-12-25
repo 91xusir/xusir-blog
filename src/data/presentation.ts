@@ -18,12 +18,10 @@ const presentation: Presentation = {
   mail: "91xusir@proton.me",
   title: "Hi,there👋",
   description: `
-    I'm a *full-stack developer*, an *independent developer*, and a *product person*, 
-    focused on developing various interesting small products. 
-    My tech stack includes Copilot, Cursor, and ChatGPT.
+    I'm an amateur developer.I like to develop all kinds of interesting small products. 
   `,
   description_zh: `
-    全栈开发者，独立开发者和产品人，喜欢开发各种有趣的小玩具。
+   业余开发者喜欢开发各种有趣的小玩具。
   `,
   techStack: ["*Copilot*+", "*Cursor*+", "*ChatGPT*", "👀"],
   socials: [

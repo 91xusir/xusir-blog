@@ -6,17 +6,20 @@ slug: "mysql-command"
 isPublish: true
 ---
 
-### 1. 创建数据库
+1. 创建数据库
+
 ```sql
 CREATE DATABASE IF NOT EXISTS mydatabase;
 ```
 
-### 2. 删除数据库
+2. 删除数据库
+
 ```sql
 DROP DATABASE IF EXISTS mydatabase;
 ```
 
-# 3. 创建表
+3. 创建表
+
 ```sql
 CREATE TABLE IF NOT EXISTS mytable (
     id INT AUTO_INCREMENT,
@@ -25,29 +28,33 @@ CREATE TABLE IF NOT EXISTS mytable (
 );
 ```
 
-# 4. 删除表
+4. 删除表
+
 ```sql
 DROP TABLE IF EXISTS mytable;
 ```
 
-# 5. 插入数据
+5. 插入数据
+
 ```sql
 INSERT INTO mytable (name) VALUES ('John');
 ```
 
-# 6. 查询数据
+6. 查询数据
+
 ```sql
 SELECT * FROM mytable;
 ```
 
-# 7. 更新数据
+7. 更新数据
+
 ```sql
 UPDATE mytable SET name = 'Jane' WHERE id = 1;
 ```
 
-# 8. 删除数据
+8. 删除数据
+
 ```sql
 DELETE FROM mytable WHERE id = 1;
 ```
-
 
