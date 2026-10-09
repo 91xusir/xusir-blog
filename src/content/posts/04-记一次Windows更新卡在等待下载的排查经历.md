@@ -1,3 +1,10 @@
+---
+title: "记一次 Windows 更新卡在等待下载的排查经历"
+publishedAt: 2026-10-09
+description: "记录 Windows 更新卡在等待下载时的排查过程。"
+isPublish: true
+---
+
 # 记一次 Windows 11 更新卡在"等待下载"的排查经历
 
 > 日期：2026-10-09 · 环境：Windows 11（Build 26200）· 症状：Windows 更新长时间停留在"正在等待下载"，卡了数天
